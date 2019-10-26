@@ -28,7 +28,7 @@ Statuses are descriptions of the results of the model being tested. There are fi
 - `UNKNOWN` - returned when a search limit is reached and no solution has been found.
 
 ### <u>Project Descriptions</u>
-* _Sudoku Solver_ - The Sudoku Solver takes a 9x9 Sudoku puzzle as user input. The user enters nine rows and nine columns of values separated by spaces, where blank spaces are entered as 0 and preset spaces are entered as the given number. 
+* <a href='https://github.com/amar-sinha/or-tools/tree/master/Sudoku%20Solver'>_Sudoku Solver_</a> - The Sudoku Solver takes a 9x9 Sudoku puzzle as user input. The user enters nine rows and nine columns of values separated by spaces, where blank spaces are entered as 0 and preset spaces are entered as the given number. 
     * _Create a matrix of all variables_ - The program first creates uniquely identified NewIntVar integer variables and organizes them in a 9x9 NumPy matrix.
     * _Define and add constraints_ - The `AddAllDifferent` constraint is applied to the Sudoku puzzle to fill unique values of 1-9 in each row, column, and 3x3 subsquare. To add each constraint:
         * _Rows_ -  iterate through each row of the matrix stored as a NumPy array to add each row constraint
