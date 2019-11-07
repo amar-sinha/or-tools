@@ -23,9 +23,10 @@ class VarArraySolutionPrinter(cp_model.CpSolverSolutionCallback):
     def solution_count(self):
         return self.__solution_count
 
-def eightQueens():
+def n_queens():
     # Constraint programming engine
     model = cp_model.CpModel()
     n = 8
 
     
+
