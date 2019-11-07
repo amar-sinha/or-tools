@@ -88,32 +88,22 @@ Press Enter after entering the 9th row for solution.""")
     rowset = 0
     colset = 0
     while True:
+
         if rowset == 0:
-            np_mtrx_slice = np_mtrx[0:3, i:j]
-            i, j, colset = i+3, j+3, colset+1
-            array = merge(np.asarray(np_mtrx_slice).tolist())
-            model.AddAllDifferent(array)
-            if colset == 3:
-                rowset += 1
-                i, j, colset = 0, 3, 0
+            np_mtrx_slice = np_mtrx[0:3, i:j]           
         elif rowset == 1:
             np_mtrx_slice = np_mtrx[3:6, i:j]
-            i, j, colset = i+3, j+3, colset+1
-            array = merge(np.asarray(np_mtrx_slice).tolist())
-            model.AddAllDifferent(array)
-            if colset == 3:
-                rowset += 1
-                i, j, colset = 0, 3, 0
         elif rowset == 2:
             np_mtrx_slice = np_mtrx[6:9, i:j]
-            i, j, colset = i+3, j+3, colset+1
-            array = merge(np.asarray(np_mtrx_slice).tolist())
-            model.AddAllDifferent(array)
-            if colset == 3:
-                rowset += 1
-                i, j, colset = 0, 3, 0
         else:
             break
+
+        i, j, colset = i+3, j+3, colset+1   
+        array = merge(np.asarray(np_mtrx_slice).tolist())
+        model.AddAllDifferent(array)
+        if colset == 3:
+            rowset += 1
+            i, j, colset = 0, 3, 0
 
     # Solve model
     solver = cp_model.CpSolver()
