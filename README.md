@@ -18,7 +18,7 @@ Install numpy
 ### <u>OR-Tools Specifications</u>
 Constraints define the unique and specific properties of a solution we want to be found. Listed below are constraints that are used throught these project implementations: 
 
-- `AddAllDifferent`: forces all variables provided as input to have different values 
+- `AddAllDifferent` - forces all variables provided as input to have different values 
 
 Statuses are descriptions of the results of the model being tested. There are five possible statuses:
 - `INFEASIBLE` - returned when it is proven that no solutions are to be found. 
