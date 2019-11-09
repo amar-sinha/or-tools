@@ -28,6 +28,11 @@ Statuses are descriptions of the results of the model being tested. There are fi
 - `UNKNOWN` - returned when a search limit is reached and no solution has been found.
 
 ### <u>Project Descriptions</u>
+* <a href='https://github.com/amar-sinha/or-tools/tree/master/Cryptarithmetic'>_Cryptarithmetic_</a> - The Cryptarithmetic Puzzle Solver takes some _n_ number of words in from user input. For the _n_ words, all words up to the (_n_-1)th word will sum up to equal the (_n_)th word.
+    * _Create word and letter arrays_ -
+
+* <a href='https://github.com/amar-sinha/or-tools/tree/master/N-Queens'>_N-Queens_</a> - The N-Queens Solver takes a number _n_ as user input. The program solves the puzzle by finding placements of the _n_ queens on an _n_ x _n_ chessboard such that no two queens are threatening each other.
+
 * <a href='https://github.com/amar-sinha/or-tools/tree/master/Sudoku%20Solver'>_Sudoku Solver_</a> - The Sudoku Solver takes a 9x9 Sudoku puzzle as user input. The user enters nine rows and nine columns of values separated by spaces, where blank spaces are entered as 0 and preset spaces are entered as the given number. 
     * _Create a matrix of all variables_ - The program first creates uniquely identified NewIntVar integer variables and organizes them in a 9x9 NumPy matrix.
     * _Define and add constraints_ - The `AddAllDifferent` constraint is applied to the Sudoku puzzle to fill unique values of 1-9 in each row, column, and 3x3 subsquare. To add each constraint:
