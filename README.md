@@ -29,7 +29,22 @@ Statuses are descriptions of the results of the model being tested. There are fi
 
 ### <u>Project Descriptions</u>
 * <a href='https://github.com/amar-sinha/or-tools/tree/master/Cryptarithmetic'>_Cryptarithmetic_</a> - The Cryptarithmetic Puzzle Solver takes some _n_ number of words in from user input. For the _n_ words, all words up to the (_n_-1)th word will sum up to equal the (_n_)th word.
-    * _Create word and letter arrays_ -
+    * _Create word and letter arrays_ - The program first reads each string for the left-hand side and right-hand sides of the equations. It generates a `word_array` (contains whole words) and a `split_word_array` (a list of lists where each list contains split words).
+    * _Creating the variables_ - To obtain a NewIntVar integer variable for each unique letter in the equation, the program iterates through each character in each word of the split word array and adds the { character : NewIntVar } key-value pair to the `letters_dict`.
+    * _Define and add constraints_ - The `AddAllDifferent` constraint is applied to `intvar_array`, which is the values set of `letters_dict`, to ensure that each unique letter has a unique value. The `Add` constraint is applied to the equation generated in the for loop below:
+        ```
+        constraint_array = []
+        for word in split_word_array:
+            exp = len(word)-1
+            value = 0
+            for char in word:
+                value += letters_dict[char] * pow(base, exp)
+                exp -= 1
+            constraint_array.append(value)
+        ```
+        The inner for loop creates a numerical value for each particular word by generating a digit for each place value, which is then added to the constraint array.
+    * _Generate and call the solution_ - Generate the solution using `cp_model.CpSolver()` and call back the solution found for each unique letter - showing all possible solutions for the puzzle.
+    * _Provide runtime statistics_ - The program provides the user with insight to the program by outputting the status, the number of conflicts, the number of search branches, the time the program took to complete, and the total number of solutions found.
 
 * <a href='https://github.com/amar-sinha/or-tools/tree/master/N-Queens'>_N-Queens_</a> - The N-Queens Solver takes a number _n_ as user input. The program solves the puzzle by finding placements of the _n_ queens on an _n_ x _n_ chessboard such that no two queens are threatening each other.
 
