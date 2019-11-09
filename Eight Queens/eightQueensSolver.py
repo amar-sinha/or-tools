@@ -23,10 +23,28 @@ class VarArraySolutionPrinter(cp_model.CpSolverSolutionCallback):
     def solution_count(self):
         return self.__solution_count
 
-def n_queens():
+def n_queens(n):
     # Constraint programming engine
     model = cp_model.CpModel()
-    n = 8
 
-    
+    #queen_mtrx = [model.NewIntVar(0, n-1, 'col%i' % i) for i in range(n)]
 
+    raw_mtrx = []
+    count = 0
+    id = 1
+    while count < n:
+        raw_row = []
+        for i in range(n):
+            raw_row.append(model.NewIntVar(0,1, str(id)))
+            id += 1
+        raw_mtrx.append(raw_row)
+        count += 1
+
+    queen_mtrx = np.matrix(raw_mtrx)
+
+    print(queen_mtrx)
+
+    return queen_mtrx
+
+if __name__ == '__main__':
+    n_queens(4)
