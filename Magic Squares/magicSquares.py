@@ -36,6 +36,21 @@ def merge(mtrx_list):
     
     return merged
 
+def addMagicSquaresRowVal(model, row, magic, val, id):
+    if val == '0':
+        row.append(model.NewIntVar(1, magic, str(id)))
+        id += 1
+    else:
+        row.append(model.NewIntVar(int(val), int(val), str(id)))
+        id += 1
+
+def makeMagicSquaresRow(model, normality, row, magic, val, id):
+    if 0 <= int(val) <= magic:
+        addMagicSquaresRowVal(model, row, magic, val, id)
+    else:
+        print('A value entered in this row exceeds the range of values [1,%i] for the normal magic square' % magic)
+        exit()
+
 def magicSquares():
     # Constraint programming engine
     model = cp_model.CpModel()
@@ -49,36 +64,28 @@ Press Enter after entering the nth row for solution."""
 
     raw_mtrx = []   # raw matrix of each row of magic square
     id = 1          #  unique id for each variable
-    normal = input("Is the magic square normal? (y/n): ")
+    n = int(input("Size of puzzle: "))
+    normality = input("Is the magic square normal? (y/n): ")
     magic_sum = -1
-    if normal == 'n':
+    if normality == 'n':
         magic_sum = int(input("Enter the magic sum: "))
 
     # Generate all variables from user input magic square
-    n = -1
     while True:
         row_vals = input().split()
         if row_vals:
-            n = len(row_vals)
-
-            if normal == 'y':
+            if normality == 'y':
                 magic_sum = int(n*(n*n+1)/2) # Normal Magic Sum is defined as M = n(n^2+1)/2
                 magic = n*n
             else:
                 magic = magic_sum
-
             if len(row_vals) != n:
                 print('Incorrect number of columns entered - %s columns' % str(len(row_vals)))
                 exit()
             else:
                 raw_row = []
                 for val in row_vals:
-                    if val == '0':
-                        raw_row.append(model.NewIntVar(1, magic, str(id)))
-                        id += 1
-                    else:
-                        raw_row.append(model.NewIntVar(int(val), int(val), str(id)))
-                        id += 1
+                    makeMagicSquaresRow(model, normality, raw_row, magic, val, id)
                 raw_mtrx.append(raw_row)
         else:
             if len(raw_mtrx) != n:
